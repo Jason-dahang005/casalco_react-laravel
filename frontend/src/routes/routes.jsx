@@ -11,8 +11,8 @@ const routes = [
   { path: '/admin/membership-application',    exact: true, name: 'Membership Application',        component: MembershipApplication },
   { path: '/admin/loan-application',          exact: true, name: 'Loan Application',              component: LoanApplication },
   { path: '/admin/members',                   exact: true, name: 'Members',                       component: Members},
-  { path: '/admin/approved-membership',        exact: true, name: 'Approved Membership',           component: ApprovedMembership },
-  { path: '/admin/approved-loan',              exact: true, name: 'Approved Loan',                 component: ApprovedLoan }
+  { path: '/admin/approved-membership',       exact: true, name: 'Approved Membership',           component: ApprovedMembership },
+  { path: '/admin/approved-loan',             exact: true, name: 'Approved Loan',                 component: ApprovedLoan },
 ]
 
 export default routes
