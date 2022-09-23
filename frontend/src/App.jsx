@@ -12,7 +12,6 @@ function App() {
         <Switch>
           <Route path="/admin" name="Admin" render={(props) => <AdminLayout { ...props }/> }/>
           <Route path="/officer" name="Officer" render={(props) => <OfficerLayout {...props} /> }/>
-          <Route exact path="/" component />
         </Switch>
       </Router>
     </>
