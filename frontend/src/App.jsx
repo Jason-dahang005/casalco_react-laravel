@@ -8,6 +8,7 @@ import Login from "./pages/auth/login/Login"
 import Register from "./pages/auth/register/Register"
 import Membership from "./pages/client/membership/Membership"
 import MembershipForm from "./pages/client/membership/MembershipForm"
+import Example from "./Example"
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/register" component={Register} />
           <Route path="/membership" component={Membership} />
           <Route path="/membership-form" component={MembershipForm} />
+          <Route path="/example" component={Example} />
         </Switch>
       </Router>
     </>

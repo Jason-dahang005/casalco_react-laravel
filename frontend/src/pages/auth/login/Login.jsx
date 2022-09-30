@@ -11,7 +11,7 @@ const Login = () => {
           <img src={img1} alt="" className='max-w-[1000px] h-full w-full object-cover' />
         </div>
         <div className='flex flex-col justify-center col-span-2'>
-          <form action="" className='max-w-[400px] w-full mx-auto px-5 rounded-lg shadow-2xl'>
+          <form action="" className='max-w-[400px] w-full mx-auto px-5 rounded-lg shadow-xl'>
             <div className="py-6 text-center">
               <h1 className='text-4xl font-bold'>Welcome Back!</h1>
               <h2 className='text-xl font-semibold'>kindly login</h2>

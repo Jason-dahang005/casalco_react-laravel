@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ExampleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\MembershipController;
@@ -19,5 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::apiResource('Membership', MembershipController::class);
+Route::apiResource('membership', MembershipController::class);
 Route::apiResource('PUT', MembershipController::class);
+
+Route::apiResource('example', ExampleController::class);
