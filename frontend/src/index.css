@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* MEMBERSHIP APPLICATION FORM STYLE START */
+.membership-form {
+  @apply outline-none border border-orange-600 rounded-lg px-3 py-2 h-10 w-full bg-[#fff] text-gray-500
+}
+
+.membership-form-btn-box {
+  @apply border w-[325px] mx-auto
+}
+
+.membership-form-btn {
+  @apply bg-orange-600 w-full text-[#fff] h-10 rounded-lg text-xl uppercase font-semibold hover:bg-orange-500
+}
+/*  MEMBERSHIP APPLICATION FORM STYLE END  */

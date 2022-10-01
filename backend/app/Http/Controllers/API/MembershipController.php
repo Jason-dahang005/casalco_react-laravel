@@ -40,9 +40,23 @@ class MembershipController extends Controller
 	public function store(Request $request)
 	{
 		$validator = Validator::make($request->all(), [
-			'fname' => 'required',
-			'mname' => 'required',
-			'lname' => 'required'
+			'fname'					=> 'required',
+			'mname'					=> 'required',
+			'lname'					=> 'required',
+			'gender'				=> 'required',
+			'dob'						=> 'required',
+			'bplace'				=> 'required',
+			'address'				=> 'required',
+			'unit'					=> 'required',
+			'occupation'		=> 'required',
+			'educ'					=> 'required',
+			'm_income'			=> 'required',
+			'civil'					=> 'required',
+			'religion'			=> 'required',
+			'contact'				=> 'required',
+			'email'					=> 'required',
+			'dependents'		=> 'required',
+
 	]);
 
 	if($validator->fails()){
@@ -52,9 +66,23 @@ class MembershipController extends Controller
 			]);
 	}else{
 			$example = new Membership();
-			$example->Fname = $request->fname;
-			$example->Mname = $request->mname;
-			$example->Lname = $request->lname;
+			$example->Fname								= 		$request->fname;
+			$example->Mname 							= 		$request->mname;
+			$example->Lname 							= 		$request->lname;
+			$example->suffix 							=     $request->suffix;
+			$example->gender 							=     $request->gender;
+			$example->dob									=			$request->dob;
+			$example->Bplace							=			$request->bplace;
+			$example->address							=			$request->address;
+			$example->unit								=			$request->unit;
+			$example->occupation					=			$request->occupation;
+			$example->educ								=			$request->educ;
+			$example->MI									=			$request->m_income;
+			$example->civilStatus					=			$request->civil;
+			$example->religion						=			$request->religion;
+			$example->contactNum					=			$request->contact;
+			$example->email								=			$request->email;
+			$example->NUmDependents				=			$request->dependents;
 			$example->save();
 			return response()->json([
 					'status' => 200,
