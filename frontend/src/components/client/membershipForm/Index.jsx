@@ -25,6 +25,26 @@ const Index = () => {
     contact:    '',
     email:      '',
     dependents: '',
+    mother:     '',
+
+    // spouse info
+    s_fullname:         '',
+    s_age:              '',
+    s_occupation:       '',
+    s_monthly_income:   '',
+    s_employer:         '',
+    s_contact_no:       '',
+    s_mother:           '',
+
+    // beneficiary info
+    b_fullnmae:         '',
+    b_relationship:     '',
+    b_address:          '',
+    b_age:              '',
+
+    // government id
+    tin:                '',
+    sss:                '',
     error_list: []
   })
   
@@ -37,23 +57,43 @@ const Index = () => {
     e.preventDefault();
 
     const data = {
-      fname:          example.fname,
-      mname:          example.mname,
-      lname:          example.lname,
-      suffix:         example.suffix,
-      gender:         example.gender,
-      dob:            example.dob,
-      bplace:         example.bplace,
-      address:        example.address,
-      unit:           example.unit,
-      occupation:     example.occupation,
-      educ:           example.educ,
-      m_income:       example.m_income,
-      civil:          example.civil,
-      religion:       example.religion,
-      contact:        example.contact,
-      email:          example.email,
-      dependents:     example.dependents,
+      fname:              example.fname,
+      mname:              example.mname,
+      lname:              example.lname,
+      suffix:             example.suffix,
+      gender:             example.gender,
+      dob:                example.dob,
+      bplace:             example.bplace,
+      address:            example.address,
+      unit:               example.unit,
+      occupation:         example.occupation,
+      educ:               example.educ,
+      m_income:           example.m_income,
+      civil:              example.civil,
+      religion:           example.religion,
+      contact:            example.contact,
+      email:              example.email,
+      dependents:         example.dependents,
+      mother:             example.mother,
+
+      // SPOUSE INFORMATION
+      s_fullname:         example.s_fullname,
+      s_age:              example.s_age,
+      s_occuaption:       example.s_occupation,
+      s_monthly_income:   example.s_monthly_income,
+      s_employer:         example.s_employer,
+      s_contact_no:       example.s_contact_no,
+      s_mother:           example.s_mother,
+
+      // BENEFICIARY INFORMATION
+      b_fullname:         example.b_fullname,
+      b_relationship:     example.b_relationship,
+      b_address:          example.b_address,
+      b_age:              example.b_age,
+
+      // GOVERNMENT ID
+      tin:                example.tin,
+      sss:                example.sss,
     }
 
     axios.post(`http://127.0.0.1:8000/api/membership`, data).then(res => {
@@ -92,7 +132,7 @@ const Index = () => {
             </div>
             <div className="py-3">
               <h2 className='text-xl font-semibold'>Personal Information</h2>
-              <p>We require your personal information to ensure calidty of you memnbership application</p>
+              <p>We require your personal information to ensure validty of you memnbership application</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-3 gap-y-4">
               <div>
@@ -163,6 +203,71 @@ const Index = () => {
               </div>
               <div>
                 <input type="text" className='membership-form' name='dependents' onChange={handleExample} value={example.dependents} placeholder='No. of Dependents'/>
+              </div>
+              <div className='col-span-3'>
+                <input type="text" className='membership-form' name='mother' onChange={handleExample} value={example.mother} placeholder="Mother's maiden name"/>
+              </div>
+            </div>
+
+            {/* SPOUSE INFORMATION */}
+            <div className="h-1 w-full bg-orange-600 mt-5"></div>
+            <div className="py-3">
+              <h2 className='text-xl font-bold'>Spouse Personal Information</h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-x-3 gap-y-4">
+              <div className="col-span-3">
+                <input type="text" className='membership-form' name='s_fullname' onChange={handleExample} value={example.s_fullname} placeholder='Complete name' />
+              </div>
+              <div>
+                <input type="text" className='membership-form' name='s_age' onChange={handleExample} value={example.s_age} placeholder='Age' />
+              </div>
+              <div className='col-span-2'>
+                <input type="text" className='membership-form' name='s_occupation' onChange={handleExample} value={example.s_occupation} placeholder='Occupation' />
+              </div>
+              <div className='col-span-2'>
+                <input type="text" className='membership-form' name='s_monthly_income' onChange={handleExample} value={example.s_monthly_income} placeholder='Monthly Income' />
+              </div>
+              <div className='col-span-2'>
+                <input type="text" className='membership-form' name='s_employer' onChange={handleExample} value={example.s_employer} placeholder="Employer's name" />
+              </div>
+              <div className='col-span-2'>
+                <input type="text" className='membership-form' name='s_contact_no' onChange={handleExample} value={example.s_contact_no} placeholder='Contact No.' />
+              </div>
+              <div className='col-span-4'>
+                <input type="text" className='membership-form' name='s_mother' onChange={handleExample} value={example.s_mother} placeholder="Mother's maiden name"/>
+              </div>
+            </div>
+
+            {/* BENEFICIARY INFORMATION */}
+            <div className="h-1 w-full bg-orange-600 mt-5"></div>
+            <div className="py-3">
+              <h2 className='text-xl font-bold'>Nomination of Beneficiary</h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-x-3 gap-y-4">
+              <div className="col-span-3">
+                <input type="text" className='membership-form' name='b_fullname' onChange={handleExample} value={example.b_fullname} placeholder="Complete Name" />
+              </div>
+              <div>
+                <input type="text" className='membership-form' name='b_relationship' onChange={handleExample} value={example.b_relationship} placeholder="Relationship" />
+              </div>
+              <div className="col-span-3">
+                <input type="text" className='membership-form' name='b_address' onChange={handleExample} value={example.b_address} placeholder="Address" />
+              </div>
+              <div>
+                <input type="text" className='membership-form' name='b_age' onChange={handleExample} value={example.b_age} placeholder="Age" />
+              </div>
+            </div>
+
+            <div className="h-1 w-full bg-orange-600 mt-5"></div>
+            <div className="py-3">
+              <h2 className='text-xl font-bold'>Government ID Number</h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-x-3 gap-y-4">
+              <div>
+                <input type="text" className="membership-form" name='tin' onChange={handleExample} value={example.tin} placeholder="TIN" />
+              </div>
+              <div>
+                <input type="text" className="membership-form" name='sss' onChange={handleExample} value={example.sss} placeholder="SSS Number" />
               </div>
             </div>
           </div>

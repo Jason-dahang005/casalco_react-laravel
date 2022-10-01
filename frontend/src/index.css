@@ -4,11 +4,11 @@
 
 /* MEMBERSHIP APPLICATION FORM STYLE START */
 .membership-form {
-  @apply outline-none border border-orange-600 rounded-lg px-3 py-2 h-10 w-full bg-[#fff] text-gray-500
+  @apply outline-none border border-orange-600 rounded-lg px-3 py-2 h-12 w-full bg-[#fff] text-gray-500
 }
 
 .membership-form-btn-box {
-  @apply border w-[325px] mx-auto
+  @apply w-[325px] mx-auto pb-5
 }
 
 .membership-form-btn {

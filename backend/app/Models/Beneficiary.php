@@ -13,10 +13,8 @@ class Beneficiary extends Model
         'membership_id',
         'b_name',
         'b_relationship',
-        's_age',
+        'b_age',
         'b_address',
-        'b_mother_lname',
-        'b_mother_fname',
-        'b_mother_mname',
+        
     ];
 }

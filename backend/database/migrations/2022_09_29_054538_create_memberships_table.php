@@ -33,11 +33,12 @@ return new class extends Migration
             $table->string('email');
             $table->string('NumDependents');
             $table->integer('is_approved')->default(0)->comment('0 = pending, 1 = pre-approved, 2 = approved');
+            $table->text('mother');
             // $table->integer('membership_type')->comment('0 = online, 1 = walk-in');
             // $table->string('TIN');
             // $table->string('SSSnum');
-            // $table->string('acc_id')->unique()->nullable();
-            // $table->string('or_no')->nullable();
+            $table->string('acc_id')->unique()->nullable();
+            $table->string('or_no')->nullable();
             // $table->string('assigned_officer')->nullable();
             $table->timestamps();
             // $table->string('selfiepic');

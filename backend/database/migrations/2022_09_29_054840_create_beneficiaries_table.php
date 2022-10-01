@@ -21,9 +21,6 @@ return new class extends Migration
             $table->string('benRelation')->nullable();
             $table->string('benAge')->nullable();
             $table->string('benAddress')->nullable();
-            $table->string('benMothersLname')->nullable();
-            $table->string('benMothersFname')->nullable();
-            $table->string('benMothersMname')->nullable();
             $table->timestamps();
         });
     }

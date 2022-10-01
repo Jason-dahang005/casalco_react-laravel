@@ -17,5 +17,6 @@ class Spouse extends Model
         's_m_income',
         's_emp_name',
         's_contact',
+        's_mother'
     ];
 }
