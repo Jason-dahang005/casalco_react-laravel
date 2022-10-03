@@ -2,9 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* HEADER STYLE START */
+#nav-links {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+/*  HEADER STYLE END  */
+
 /* MEMBERSHIP APPLICATION FORM STYLE START */
 .membership-form {
-  @apply outline-none border border-orange-600 rounded-lg px-3 py-2 h-12 w-full bg-[#fff] text-gray-500
+  @apply outline-none border border-casalcoOrange rounded-lg px-3 py-2 h-12 w-full bg-[#fff] text-[#262626]
+  
 }
 
 .membership-form-btn-box {
@@ -12,6 +19,6 @@
 }
 
 .membership-form-btn {
-  @apply bg-orange-600 w-full text-[#fff] h-10 rounded-lg text-xl uppercase font-semibold hover:bg-orange-500
+  @apply bg-casalcoOrange w-full text-[#fff] h-10 rounded-lg text-xl uppercase font-semibold hover:bg-casalcoOrange
 }
 /*  MEMBERSHIP APPLICATION FORM STYLE END  */

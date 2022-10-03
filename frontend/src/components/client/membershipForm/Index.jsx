@@ -120,15 +120,15 @@ const Index = () => {
     // </div>
 
     <div className="grid grid-cols-1 sm:grid-cols-5">
-      <div className="border">
+      <div className="">
         asdasd
       </div>
-      <div className="col-span-4 border">
+      <div className="col-span-4 border-l border-[#9494b8]">
         <form onSubmit={submitExample}>
           <div className="w-[1000px] mx-auto py-5">
             <div className="space-y-5">
               <h1 className="text-3xl font-bold">Casalco Membership Form</h1>
-              <div className="bg-orange-600 h-1"></div>
+              <div className="bg-casalcoOrange h-1"></div>
             </div>
             <div className="py-3">
               <h2 className='text-xl font-semibold'>Personal Information</h2>
@@ -210,7 +210,7 @@ const Index = () => {
             </div>
 
             {/* SPOUSE INFORMATION */}
-            <div className="h-1 w-full bg-orange-600 mt-5"></div>
+            <div className="h-1 w-full bg-casalcoOrange mt-5"></div>
             <div className="py-3">
               <h2 className='text-xl font-bold'>Spouse Personal Information</h2>
             </div>
@@ -239,7 +239,7 @@ const Index = () => {
             </div>
 
             {/* BENEFICIARY INFORMATION */}
-            <div className="h-1 w-full bg-orange-600 mt-5"></div>
+            <div className="h-1 w-full bg-casalcoOrange mt-5"></div>
             <div className="py-3">
               <h2 className='text-xl font-bold'>Nomination of Beneficiary</h2>
             </div>
@@ -258,7 +258,7 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="h-1 w-full bg-orange-600 mt-5"></div>
+            <div className="h-1 w-full bg-casalcoOrange mt-5"></div>
             <div className="py-3">
               <h2 className='text-xl font-bold'>Government ID Number</h2>
             </div>
