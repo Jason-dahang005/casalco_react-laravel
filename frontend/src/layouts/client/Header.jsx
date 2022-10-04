@@ -27,18 +27,26 @@ const Header = () => {
       <div className='grid grid-cols-4 text-[#fff]'>
         <div className="col-span-3 bg-[#ff3300] py-2">
           <div className="flex justify-center items-center space-x-5">
+
             <div className="flex justify-center items-center space-x-1">
               <MdEmail/>
               <h1>casalco.coop@gmail.com</h1>
             </div>
+            
+            <div className="w-[1px] h-[20px] bg-[#fff]"></div>
+            
             <div className="flex justify-center items-center space-x-1">
               <ImLocation2 />
               <h1>Capitol University Compound, Corrales Ext. CDOC 9000</h1>
-            </div>         
+            </div>
+
+            <div className="w-[1px] h-[20px] bg-[#fff]"></div>        
+            
             <div className="flex justify-center items-center space-x-1">
               <AiFillPhone/>
               <h1>(088) 856-2710</h1>
             </div>
+            
           </div>
         </div>
         <div className="bg-[#262626] py-2">

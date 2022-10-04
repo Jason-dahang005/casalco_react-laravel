@@ -22,3 +22,36 @@
   @apply bg-casalcoOrange w-full text-[#fff] h-10 rounded-lg text-xl uppercase font-semibold hover:bg-casalcoOrange
 }
 /*  MEMBERSHIP APPLICATION FORM STYLE END  */
+
+.design-button {
+  @apply
+  relative
+  h-[vh100]
+  text-[#262626]
+  transition-colors
+  before:absolute
+  before:left-0
+  before:top-0
+  before:z-10
+  before:h-full
+  before:w-full
+  before:origin-top-left
+  before:scale-y-0
+  before:bg-casalcoOrange
+  before:transition-transform
+  before:duration-300
+  before:content-['']
+  hover:text-[#fff]
+  before:hover:border-none
+  before:hover:scale-y-100
+  flex
+  justify-center
+  items-center
+  text-5xl
+  uppercase
+  font-bold
+  cursor-pointer
+
+
+
+}

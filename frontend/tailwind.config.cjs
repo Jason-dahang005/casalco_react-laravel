@@ -6,7 +6,9 @@ module.exports = {
   ],
   theme: {
     colors: {
-      'casalcoOrange': '#ff3300'
+      'casalcoOrange' : '#ff3300',
+      'lightGray'     : '#a3a3c2',
+      'veryLightGray' : '#e0e0eb'
     },
     extend: {},
   },

@@ -45,11 +45,11 @@ const Login = () => {
             </div>
             <div className='flex flex-col py-2'>
               <label htmlFor="" className='pl-5 font-bold'>Email</label>
-              <input type="email" className='py-2 outline-none rounded-full backdrop:px-5 border border-casalcoOrange' name='email' onChange={handleLogin} value={login.email} />
+              <input type="email" className='py-2 outline-none rounded-full backdrop:px-5 border border-casalcoOrange px-5' name='email' onChange={handleLogin} value={login.email} />
             </div>
             <div className='flex flex-col py-2'>
               <label htmlFor="" className='pl-5 font-bold'>Password</label>
-              <input type="password" className='py-2 outline-none rounded-full backdrop:px-5 border border-casalcoOrange' name='password' onChange={handleLogin} value={login.password}/>
+              <input type="password" className='py-2 outline-none rounded-full backdrop:px-5 border border-casalcoOrange px-5' name='password' onChange={handleLogin} value={login.password}/>
             </div>
             <div>
               <button type="submit" className='border border-orange-500 rounded-full w-full mt-5 py-2 bg-casalcoOrange font-semibold hover:bg-orange-500 text-[#fff]'>Sign In</button>
