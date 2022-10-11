@@ -3,13 +3,18 @@ import React from 'react'
 import { useState } from 'react'
 import img1 from '../../../assets/client/auth/img1.png'
 import Header from '../../../layouts/client/Header'
+import swal from 'sweetalert'
+import { useHistory } from 'react-router-dom'
 
 import { Link } from 'react-router-dom'
 
 const Login = () => {
+  const history = useHistory()
+
   const [login, setLogin] = useState({
-    email:    '',
-    password: ''
+    email:        '',
+    password:     '',
+    error_list:   []
   })
 
   const handleLogin = (e) => {
@@ -25,39 +30,49 @@ const Login = () => {
       password:   login.password
     }
 
-    axios.post(`/api/login`).then(res => [
-      
-    ])
+    axios.get('/sanctum/csrf-cookie').then(response => {
+      axios.post(`/api/login`, data).then(res => {
+        if (res.data.status === 200) {
+          localStorage.setItem('auth_token', res.data.token)
+          localStorage.setItem('auth_firstname', res.data.firstname)
+          swal('Success', res.data.message, 'success')
+          history.push('/')
+        }else if(res.data.status === 401) {
+          swal('Warning', res.data.message, 'warning')
+        }else{
+          setLogin({...login, error_list: res.data.validation_errors })
+        }
+      })
+    })
   }
 
   return (
     <>
       <Header/>
-      <div className="grid grid-cols-1 sm:grid-cols-5 h-full w-[1200px] mx-auto">
-        <div className='hidden sm:block col-span-3'>
-          <img src={img1} alt="" className='max-w-[1000px] h-full w-full object-cover' />
+      <form onSubmit={submitLogin} className='flex flex-col px-48'>
+
+        <div className='flex flex-col py-2'>
+          <label htmlFor="" className='pl-5 font-bold'>Email</label>
+          <input
+            type="email"
+            name='email'
+            onChange={handleLogin}
+            value={login.email}
+            className='py-2 outline-none rounded-full backdrop:px-5 border border-casalcoOrange px-5'/>
+            <span className="text-errorColor">{login.error_list.email}</span>
+
+          <label htmlFor="" className='pl-5 font-bold'>Password</label>
+          <input
+            type="password"
+            name='password'
+            onChange={handleLogin}
+            value={login.password}
+            className='py-2 outline-none rounded-full backdrop:px-5 border border-casalcoOrange px-5'/>
+            <span className="text-errorColor">{login.error_list.password}</span>
+
+          <button type="submit" className='border border-orange-500 rounded-full w-full mt-5 py-2 bg-casalcoOrange font-semibold hover:bg-orange-500 text-[#fff]'>Sign In</button>
         </div>
-        <div className='flex flex-col justify-center col-span-2'>
-          <form onSubmit={submitLogin} className='max-w-[400px] w-full mx-auto px-5 rounded-lg shadow-xl'>
-            <div className="py-6 text-center">
-              <h1 className='text-4xl font-bold'>Welcome Back!</h1>
-              <h2 className='text-xl font-semibold'>kindly login</h2>
-            </div>
-            <div className='flex flex-col py-2'>
-              <label htmlFor="" className='pl-5 font-bold'>Email</label>
-              <input type="email" className='py-2 outline-none rounded-full backdrop:px-5 border border-casalcoOrange px-5' name='email' onChange={handleLogin} value={login.email} />
-            </div>
-            <div className='flex flex-col py-2'>
-              <label htmlFor="" className='pl-5 font-bold'>Password</label>
-              <input type="password" className='py-2 outline-none rounded-full backdrop:px-5 border border-casalcoOrange px-5' name='password' onChange={handleLogin} value={login.password}/>
-            </div>
-            <div>
-              <button type="submit" className='border border-orange-500 rounded-full w-full mt-5 py-2 bg-casalcoOrange font-semibold hover:bg-orange-500 text-[#fff]'>Sign In</button>
-              <p className='text-end py-1 font-semibold'>Not yet registered? <Link to="/register" className='text-casalcoOrange'>Sign up here</Link></p>
-            </div>
-          </form>
-        </div>
-      </div>
+      </form>
     </>
   )
 }

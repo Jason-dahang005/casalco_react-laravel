@@ -52,15 +52,9 @@ const Header = () => {
         <div className="bg-[#262626] py-2">
           <div className="flex justify-center items-center space-x-5 pt-1">
             <h1>Follow Us:</h1>
-            <Link>
+            <Link to='/'>
               <FaFacebookF />
             </Link>
-            {/* <Link>
-              <BsInstagram/>
-            </Link>
-            <Link>
-              <BsTwitter/>
-            </Link> */}
           </div>
         </div>
       </div>
@@ -75,31 +69,13 @@ const Header = () => {
           </div>
         </div>
         <ul className='md:flex hidden capitalize items-center' id='nav-links'>
-          {links.map((link) => (
             <li>
-              <NavLink to={link.path} className="inline-block py-7 px-3 hover:bg-[#ff3300] hover:text-[#fff]">{link.name}</NavLink>
+              <NavLink to='/' className="inline-block py-7 px-3 hover:bg-[#ff3300] hover:text-[#fff]">Home</NavLink>
             </li>
-          ))}
         </ul>
         <div className='md:block hidden space-x-5'>
-          {/* <Link to="/register" className='hover:text-[#e62e00] uppercase font-bold'>Sign Up</Link> */}
-          <Link to="/login" className='hover:bg-[#e62e00] bg-[#ff3300] duration-500 text-[#fff] font-semibold capitalize px-6 py-3 uppercase rounded-full drop-shadow-lg'>Member's Portal</Link>
+          <Link to="/login" className='hover:bg-[#e62e00] bg-[#ff3300] duration-500 text-[#fff] font-semibold px-6 py-3 uppercase rounded-full drop-shadow-lg'>Member's Portal</Link>
         </div>
-
-        {/*  MOBIEL NAV */}
-        <ul className={`md:hidden bg-orange-500 text-[#fff] absolute w-full h-full bottom-0 py-24 pl-4 uppercase  font-bold duration-500 ${open ? 'left-0' : 'left-[-100%]'}`}>
-          {links.map((link) => (
-            <li>
-              <Link to={link.path} className="py-6 inline-block">{link.name}</Link>
-            </li>
-          ))}
-          <li>
-            <Link to="/register" className='py-6 inline-block'>Sign Up</Link>
-          </li>
-          <div className='py-5 space-x-2'>
-            <Link to="/login" className=' bg-orange-700 px-6 py-3 uppercase rounded-full drop-shadow-lg'>Member's Portal</Link>
-          </div>
-        </ul>
       </div>
     </nav>
   )
