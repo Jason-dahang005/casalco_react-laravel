@@ -9,9 +9,14 @@ import { AiFillPhone } from 'react-icons/ai'
 import { ImLocation2 } from 'react-icons/im'
 import { MdEmail} from 'react-icons/md'
 import { useState } from 'react'
+import axios from 'axios'
+import { useHistory } from 'react-router-dom'
+import swal from 'sweetalert'
 
 
 const Header = () => {
+
+  const history = useHistory()
 
   const links = [
     { name: "Home",       path: "/" },
@@ -21,6 +26,30 @@ const Header = () => {
   ]
 
   const [open, setOpen] = useState(false)
+
+  const logoutSubmmit = (e) => {
+    e.preventDefault()
+
+    axios.post(`/api/logout`).then(res => {
+      if(res.data.status === 200){
+        localStorage.removeItem('auth_token')
+        localStorage.removeItem('auth_firstname')
+        swal('Success', res.data.message, 'success')
+        history.push('/')
+      }
+    })
+  }
+
+  var AuthBtn = ''
+  if(!localStorage.getItem('auth_token')){
+    AuthBtn = (
+      <Link to="/login" className='hover:bg-[#e62e00] bg-[#ff3300] duration-500 text-[#fff] font-semibold px-6 py-3 uppercase rounded-full drop-shadow-lg'>Member's Portal</Link>
+    )
+  }else{
+    AuthBtn = (
+<button type='button' onClick={logoutSubmmit} className='hover:bg-[#e62e00] bg-[#ff3300] duration-500 text-[#fff] font-semibold px-6 py-3 uppercase rounded-full drop-shadow-lg'>Logout</button>
+    )
+  }
 
   return (
     <nav className="bg-white shadow-lg">
@@ -74,7 +103,7 @@ const Header = () => {
             </li>
         </ul>
         <div className='md:block hidden space-x-5'>
-          <Link to="/login" className='hover:bg-[#e62e00] bg-[#ff3300] duration-500 text-[#fff] font-semibold px-6 py-3 uppercase rounded-full drop-shadow-lg'>Member's Portal</Link>
+          { AuthBtn }
         </div>
       </div>
     </nav>

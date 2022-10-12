@@ -17,7 +17,7 @@ const HeroSection = () => {
               <h1 className='text-6xl font-bold uppercase'>save money and money will save you</h1>
             </div>
             <p className='text-3xl py-6 md:text-2xl font-bold text-[#1f1f2e]'>Do not save what is left after spending, but spend what is left after saving</p>
-            <Link to="/membership" className='bg-casalcoOrange sm:w-[40%] hover:w-[60%] py-3 px-6 text-center font-semibold rounded-full hover:bg-[#fff] hover:text-[#ff3300] duration-1000'>BECOME A MEMBER NOW</Link>
+            <Link to="/membership" className='bg-casalcoOrange sm:w-[40%] hover:w-[50%] py-3 px-6 text-center font-semibold rounded-full hover:bg-[#fff] hover:text-[#ff3300] duration-500'>BECOME A MEMBER NOW</Link>
           </div>
         </div>
         </div>

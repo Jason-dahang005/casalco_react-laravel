@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import AdminLayout from "./layouts/admin/AdminLayout"
 import ClientLayout from "./layouts/client/ClientLayout"
 import OfficerLayout from "./layouts/officer/OfficerLayout"
@@ -9,6 +9,7 @@ import Register from "./pages/auth/register/Register"
 import Membership from "./pages/client/membership/Membership"
 import MembershipForm from "./pages/client/membership/MembershipForm"
 import Example from "./Example"
+import AdminPrivateRoute from "./routes/AdminPrivateRoute"
 
 import axios from 'axios'
 
@@ -16,6 +17,13 @@ axios.defaults.baseURL = "http://127.0.0.1:8000"
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 axios.defaults.headers.post['Accept'] = 'application/json'
 axios.defaults.withCredentials = true;
+
+axios.defaults.withCredentials = true
+axios.interceptors.request.use(function (config){
+  const token = localStorage.getItem('auth_token')
+  config.headers.Authorization = token ? `Bearer ${token}` : ''
+  return config
+})
 
 
 function App() {
@@ -26,7 +34,8 @@ function App() {
         <Switch>
 
           {/* ROUTES FOR ADMIN */}
-          <Route path="/admin" name="Admin" render={(props) => <AdminLayout { ...props }/> }/>
+          {/* <Route path="/admin" name="Admin" render={(props) => <AdminLayout { ...props }/> }/> */}
+          <AdminPrivateRoute path="/admin" name="Admin"/>
 
           {/* ROUTES FOR OFFICER */}
           <Route path="/officer" name="Officer" render={(props) => <OfficerLayout {...props} /> }/>
@@ -34,8 +43,18 @@ function App() {
 
           {/* ROUTES FOR CLIENT */}
           <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
+          {/* <Route path="/login" component={Login} /> */}
+
+          <Route path='/login'>
+            { localStorage.getItem('auth_token') ? <Redirect to="/" /> : <Login/> }
+          </Route>
+
+          <Route path='/register'>
+            { localStorage.getItem('auth_token') ? <Redirect to="/" /> : <Register/> }
+          </Route>
+
+
+          {/* <Route path="/register" component={Register} /> */}
           <Route path="/membership" component={Membership} />
           <Route path="/membership-form" component={MembershipForm} />
           <Route path="/example" component={Example} />
