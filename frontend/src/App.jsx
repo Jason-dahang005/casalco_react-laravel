@@ -10,8 +10,11 @@ import Membership from "./pages/client/membership/Membership"
 import MembershipForm from "./pages/client/membership/MembershipForm"
 import Example from "./Example"
 import AdminPrivateRoute from "./routes/AdminPrivateRoute"
+import Page403 from "./pages/error/Page403"
+import OfficerPrivateRoute from "./routes/OfficerPrivateRoute"
 
 import axios from 'axios'
+import Page404 from "./pages/error/Page404"
 
 axios.defaults.baseURL = "http://127.0.0.1:8000"
 axios.defaults.headers.post['Content-Type'] = 'application/json'
@@ -38,7 +41,8 @@ function App() {
           <AdminPrivateRoute path="/admin" name="Admin"/>
 
           {/* ROUTES FOR OFFICER */}
-          <Route path="/officer" name="Officer" render={(props) => <OfficerLayout {...props} /> }/>
+          {/* <Route path="/officer" name="Officer" render={(props) => <OfficerLayout {...props} /> }/> */}
+          <OfficerPrivateRoute path="/officer" name="Officer"/>
 
 
           {/* ROUTES FOR CLIENT */}
@@ -58,6 +62,9 @@ function App() {
           <Route path="/membership" component={Membership} />
           <Route path="/membership-form" component={MembershipForm} />
           <Route path="/example" component={Example} />
+
+          <Route path="/403" component={Page403} />
+          <Route path="/404" component={Page404} />
         </Switch>
       </Router>
     </>

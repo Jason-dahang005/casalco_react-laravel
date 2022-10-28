@@ -4,6 +4,10 @@
 use App\Http\Controllers\API\auth\AuthController;
 // AUTH CONTROLLER END
 
+// OFFICER CONTROLLER START 
+use App\Http\Controllers\API\officer\DashboardController;
+// OFFICER CONTROLLER END
+
 
 use App\Http\Controllers\API\ExampleController;
 use Illuminate\Http\Request;
@@ -22,28 +26,50 @@ use App\Http\Controllers\AuthLoginController;
 |
 */
 
+// ATHENTICATION ROUTE START =============================================================
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+// ATHENTICATION ROUTE END ===============================================================
 
-Route::middleware(['auth:sanctum'])->group(function () {
+// ADMIN ROUTES START ====================================================================
+Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {
+
     Route::get('/checkingAuthenticated', function() {
         return response()->json([
-            'message'   => 'you are in',
+            'message'   => 'admin logged in',
             'status'    => 200
         ], 200);
     });
 
     Route::post('logout', [AuthController::class, 'logout']);
 });
+// ADMIN ROUTES END ======================================================================
+
+// OFFICER ROUTE START ===================================================================
+Route::middleware(['auth:sanctum', 'isOfficer'])->group(function () {
+
+    Route::get('/checkingOfficer', function() {
+        return response()->json([
+            'status'    => 200,
+            'message'   => 'admin logged in'
+        ], 200);
+    });
+
+    Route::apiResource('officer-dashboard', DashboardController::class);
+});
+// OFFICER ROUTE END =====================================================================
+
+// MEMBER ROUTE START ====================================================================
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('logout', [AuthController::class, 'logout']);
+});
+// MEMBER ROUTE END ======================================================================
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+// MEMBERSHIP APPLICATION ROUTE START ====================================================
 Route::apiResource('membership', MembershipController::class);
-Route::apiResource('PUT', MembershipController::class);
-Route::get('edit-membership/{id}', [MembershipController::class, 'edit']);
-Route::put('update-membership/{id}', [MembershipController::class, 'update']);
-
-Route::apiResource('example', ExampleController::class);
+// MEMBERSHIP APPLICATION ROUTE END ======================================================

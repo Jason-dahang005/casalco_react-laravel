@@ -36,7 +36,13 @@ const Login = () => {
           localStorage.setItem('auth_token', res.data.token)
           localStorage.setItem('auth_firstname', res.data.firstname)
           swal('Success', res.data.message, 'success')
-          history.push('/')
+          if(res.data.role === 'admin'){
+            history.push('/admin/dashboard')
+          }else if (res.data.role === 'officer') {
+            history.push('/officer/dashboard')
+          } else {
+            history.push('/')
+          }
         }else if(res.data.status === 401) {
           swal('Warning', res.data.message, 'warning')
         }else{

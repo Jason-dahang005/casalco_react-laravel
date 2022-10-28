@@ -1,10 +1,11 @@
 import React from 'react'
+import Index from '../../../components/officer/dashboard/Index'
 
 const Dashboard = () => {
   return (
-    <div className="grid">
-      <div className="w-[300px]"></div>
-    </div>
+    <>
+      <Index/>
+    </>
   )
 }
 

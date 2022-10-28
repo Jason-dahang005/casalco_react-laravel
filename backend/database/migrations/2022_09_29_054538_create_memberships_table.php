@@ -15,11 +15,9 @@ return new class extends Migration
     {
         Schema::create('memberships', function (Blueprint $table) {
             $table->id();
-            $table->string('Fname');
-            $table->string('Mname');
-            $table->string('Lname');
+            $table->string('firstname');
             $table->string('image');
-            $table->boolean('membership');
+            $table->boolean('membership')->default(0);
             $table->integer('status')->default(0)->comment('0 = pending, 1 = pre-approved, 2 = approved');
             $table->timestamps();
         });

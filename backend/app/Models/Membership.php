@@ -12,15 +12,8 @@ class Membership extends Model
     protected $table = 'memberships';
 
     protected $fillable = [
-        'fname',
-        'mname',
-        'lname',
-        'image',
-        'membereship',
-
-
-        // 'selfiepic',
-        // 'empIDpic'
+        'firstname',
+        'image'
     ];
 
     public function Beneficiary(){

@@ -11,7 +11,7 @@ const MembershipEligibility = () => {
       <div className='px-16 flex flex-col'>
         <div className="flex py-5">
           <AiFillCheckSquare className='text-2xl text-[#262626]'/>
-          <h1 className='text-xl font-semibold px-3 text-[#262626]'>All employees of CU, CUMC, CUBED, SUPPORT ZEBRA and its dependents.</h1>
+          <h1 className='text-xl font-semibold px-3 text-[#262626]'>All employees of CU, CUMC, CUBED and its dependents.</h1>
         </div>
         <div className="flex py-3">
           <AiFillCheckSquare className='text-2xl text-[#262626]'/>

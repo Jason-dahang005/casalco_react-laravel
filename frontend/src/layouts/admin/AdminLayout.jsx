@@ -1,5 +1,6 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import axios from 'axios'
+import { NavLink, useHistory } from 'react-router-dom'
 import { useState } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 
@@ -18,6 +19,8 @@ import routes from '../../routes/routes'
 
 const AdminLayout = () => {
 
+  const history = useHistory()
+
   const menus = [
     { name: "Dashboard", path: "/admin/dashboard", icon: MdOutlineDashboard },
     { name: "Membership Application", path: "/admin/membership-application", icon: AiOutlineFolderOpen },
@@ -28,6 +31,19 @@ const AdminLayout = () => {
   ]
 
   const [open, setOpen] = useState(true);
+
+  const logoutSubmmit = (e) => {
+    e.preventDefault()
+
+    axios.post(`/api/logout`).then(res => {
+      if(res.data.status === 200){
+        localStorage.removeItem('auth_token')
+        localStorage.removeItem('auth_firstname')
+        swal('Success', res.data.message, 'success')
+        history.push('/')
+      }
+    })
+  }
 
   return (
     <div className="relative md:flex h-screen overflow-hidden">
@@ -53,6 +69,7 @@ const AdminLayout = () => {
           <div className="flex">
             <GiHamburgerMenu size={26} className="cursor-pointer" onClick={() => setOpen(!open) } />
             <h1 className='font-bold px-5'>{menus.name}</h1>
+            <h1 onClick={logoutSubmmit} className='cursor-pointer'>Logout</h1>
           </div>
         </header>
         <main className="relative p-3 min-h-full bg-[#f3f3f2]">

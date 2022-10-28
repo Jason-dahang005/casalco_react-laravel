@@ -18,7 +18,11 @@ class MembershipController extends Controller
 	 */
 	public function index()
 	{
-			//
+			$m = Membership::orderBy('created_at', 'desc')->where('status', 0)->get();
+			return response()->json([
+				'status'		=> 200,
+				'm'					=> $m
+			]);
 	}
 
 	/**
@@ -40,38 +44,32 @@ class MembershipController extends Controller
 	public function store(Request $request)
 	{
 		$validator = Validator::make($request->all(), [
-			'fname' => 'required|string',
-			'mname' => 'required|string',
-			'lname' => 'required|string',
-			'image' => 'required'
-	]);
+			'firstname'		=> 'required',
+			'image'				=> 'required'
+		]);
 
-	if($validator->fails()){
+		if($validator->fails()){
 			return response()->json([
-					'status' => 422,
-					'errors' => $validator->messages()
+				'status'		=> 422,
+				'errors'		=>$validator->messages()
 			]);
-	}else{
-			$m = new Membership();
-			$m->Fname								= 			$request->fname;
-			$m->Mname 							= 			$request->mname;
-			$m->Lname 							= 			$request->lname;
-			$m->membership					=				0;
+		}else{
+			$m 									= new Membership;
+			$m->firstname				= $request->firstname;
 
-			$file = $request->file('pic');
-			$extension	= $file->getClientOriginalExtension();
+			$file = $request->file('image');
+			$extension  = $file->getClientOriginalExtension();
 			$filename = time().'.'.$extension;
-			$file->move('uploads/pic', $filename);
-			$m->image = 'uploads/pic'.$filename;
-			
+			$file->move('membership/selfie/',$filename);
+			$m->image	= 'membership/selfie/'.$filename;
+
 			$m->save();
 
 			return response()->json([
-				'status' => 200,
-				'message' => 'yehey!! added'
-		]);
-	}
-		
+				'status'		=> 200,
+				'message'		=> 'Added Successfully!'
+			]);
+		}
 	}
 
 
@@ -94,22 +92,7 @@ class MembershipController extends Controller
 	 */
 	public function edit($id)
 	{	
-			$membership= Membership::find($id);
-
-			if ($membership){
-				return response()->json([
-					'status' => 200,
-					'membership' => $membership
-			]);
-			}
-			else
-			{
-				return response()->json ([
-					'status' => 404,
-					'message'=> 'Membership ID not found'
-			]);
-			}
-
+		//
 	}
 
 	/**
@@ -121,44 +104,7 @@ class MembershipController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		$validator = Validator::make($request->all(),[
-				'is_approved' => 'required',
-				'acc_id'      => 'required',
-				'or_no'   	  => 'required',
-		]);
-
-		if($validator->fails()){
-			return response()->json([
-					'status' => 400,
-					'errors' => $validator->messages()
-			]);
-		}else{
-
-			$membership = Membership::find($id);
-			if($membership){
-
-				$membership->is_approved = $request->is_approved;
-				$membership->acc_id = $request->acc_id;
-				$membership->or_no = $request->or_no;
-				$membership->save();
-				
-				return response()->json ([
-						'status' => 200,
-						'message'=> 'Membership Application Updated Successfully'
-				]);
-
-			}
-			else
-			{
-				return response()->json ([
-					'status' => 404,
-					'message'=> 'Membership ID not found'
-			]);
-			}
-				
-		}
-
-		
+		//
 	}
 
 	/**

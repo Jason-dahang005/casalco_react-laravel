@@ -1,29 +1,27 @@
 import axios from 'axios'
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react'
-import { Redirect, Route } from 'react-router-dom'
+import { Redirect, Route, useHistory } from 'react-router-dom'
+import OfficerLayout from '../layouts/officer/OfficerLayout'
 import swal from 'sweetalert'
-import AdminLayout from '../layouts/admin/AdminLayout'
-import { useHistory } from 'react-router-dom'
 
-const AdminPrivateRoute = ({...rest}) => {
+const OfficerPrivateRoute = ({...rest}) => {
 
   const history = useHistory()
 
-  const [authenticated, setAuthenticated] = useState(false)
+  const [auth, setAuth] = useState(false)
 
-  const [loading, setLoading] = useState(true)
+  const [load, setLoad] = useState(true)
 
   useEffect(() => {
-    axios.get(`/api/checkingAuthenticated`).then(res => {
+    axios.get(`/api/checkingOfficer`).then(res => {
       if(res.status === 200){
-        setAuthenticated(true)
+        setAuth(true)
       }
-      setLoading(false)
+      setLoad(false)
     })
     return () => {
-      setAuthenticated(false)
+      setAuth(false)
     }
   }, [])
 
@@ -46,7 +44,7 @@ const AdminPrivateRoute = ({...rest}) => {
     }
   )
 
-  if(loading){
+  if(load){
     return <div className="h-screen">
       <h1></h1>
     </div>
@@ -58,13 +56,14 @@ const AdminPrivateRoute = ({...rest}) => {
         {...rest}
         render = {
           ({props, location}) =>
-          authenticated ? 
-          ( <AdminLayout { ...props }/> ) :
-          ( <Redirect to={ { pathname: "/login", state: { from: location } } } /> )
+          auth ?
+          ( <OfficerLayout { ...props } /> ) :
+          ( <Redirect to={ { pathname: "/login", state: { from:
+            location } } } /> )
         }
       />
     </>
   )
 }
 
-export default AdminPrivateRoute
+export default OfficerPrivateRoute
